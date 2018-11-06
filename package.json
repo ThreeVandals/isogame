@@ -1,0 +1,22 @@
+{
+  "name": "gamejam",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
+    "lint": "eslint src/"
+  },
+  "dependencies": {
+    "images": "^3.0.1",
+    "phaser-ce": "^2.11.1",
+    "phaser-plugin-isometric": "^0.9.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "parcel-bundler": "^1.10.3"
+  }
+}
