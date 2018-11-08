@@ -41,12 +41,14 @@ BasicGame.Boot.prototype = {
         const seedFromUrl = urlParams.get('seed');
         this.seed = Number.parseInt(seedFromUrl, 10) || Math.floor(Math.random() * 1000000);
         this.gameModel = new GameModel(MAP_SIZE, this.seed);
+
         // Load assets
         game.load.image('tile', ASSETS.TILE);
         game.load.image('grass_1', ASSETS.GRASS_1);
         game.load.image('grass_2', ASSETS.GRASS_2);
         game.load.image('grass_3', ASSETS.GRASS_3);
         game.load.image('basic_turret', ASSETS.BASIC_TURRET);
+        game.load.image('bullet', ASSETS.BULLET);
 
         game.time.advancedTiming = true;
         game.stage.backgroundColor = 0x000000;

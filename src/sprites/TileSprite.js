@@ -4,6 +4,8 @@ require('phaser-plugin-isometric/dist/phaser-plugin-isometric.js');
 const TILE_TYPES = require('../constants/TileTypes');
 const CONSTRUCTION_TYPES = require('../constants/ConstructionTypes');
 
+const TurretSprite = require('./TurretSprite');
+
 module.exports = class TileSprite extends Phaser.Plugin.Isometric.IsoSprite {
     constructor(game, x, y, mapX, mapY, tile) {
         super(game, x, y, 0, 'tile');
@@ -56,6 +58,9 @@ module.exports = class TileSprite extends Phaser.Plugin.Isometric.IsoSprite {
             }
         }
         this.isDirty = false;
+        
+        if (!this.constructionSprite) return;
+        this.constructionSprite.updateContent();
     }
 
     refreshGrassSprite() {
@@ -88,15 +93,16 @@ module.exports = class TileSprite extends Phaser.Plugin.Isometric.IsoSprite {
         if ([
             CONSTRUCTION_TYPES.BASIC_TURRET,
         ].indexOf(this.tile.constructionType) > -1) {
-            this.constructionSprite = this.game.add.isoSprite(
+            this.constructionSprite = new TurretSprite(
+                this.game,
                 this.isoX,
                 this.isoY,
-                0,
-                'basic_turret',
-                0,
+                this.mapX,
+                this.mapY,
+                this.tile,
             );
-            this.constructionSprite.smoothed = true;
-            this.constructionSprite.anchor.set(0.5, 0.2);
+          
+            this.game.add.existing(this.constructionSprite);
         }
     }
 
