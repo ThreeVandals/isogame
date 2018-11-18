@@ -1,8 +1,9 @@
 const TILE_TYPES = require('../constants/TileTypes');
 const CONSTRUCTION_TYPES = require('../constants/ConstructionTypes');
 
-const Turret = require('./Turret');
-module.exports = class Tile {
+const TurretModel = require('./TurretModel');
+
+module.exports = class TileModel {
     constructor(grassType = TILE_TYPES.DUST, consturctionType = CONSTRUCTION_TYPES.NONE) {
         this.grassType = grassType;
         this.constructionType = consturctionType;
@@ -16,8 +17,8 @@ module.exports = class Tile {
         this.constructionType = constructionType;
         this.grassType = TILE_TYPES.DUST;
 
-        if (this.constructionType !== CONSTRUCTION_TYPES.NONE){
-            this.construction = new Turret(CONSTRUCTION_TYPES.BASIC_TURRET, 10, 1);
+        if (this.constructionType !== CONSTRUCTION_TYPES.NONE) {
+            this.construction = new TurretModel(CONSTRUCTION_TYPES.BASIC_TURRET, 10, 1);
         }
     }
 };

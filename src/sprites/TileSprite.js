@@ -8,7 +8,7 @@ const TurretSprite = require('./TurretSprite');
 
 module.exports = class TileSprite extends Phaser.Plugin.Isometric.IsoSprite {
     constructor(game, x, y, mapX, mapY, tile) {
-        super(game, x, y, 0, 'tile');
+        super(game, x, y, 0, 'TILE');
         this.mapX = mapX;
         this.mapY = mapY;
         this.tile = tile;
@@ -42,23 +42,43 @@ module.exports = class TileSprite extends Phaser.Plugin.Isometric.IsoSprite {
             this.tint = 0x999999;
             this.game.add.tween(this).to({ isoZ: 4 }, 150, Phaser.Easing.Quadratic.InOut, true);
             if (this.grassSprite) {
-                this.game.add.tween(this.grassSprite).to({ isoZ: 4 }, 150, Phaser.Easing.Quadratic.InOut, true);
+                this.game.add.tween(this.grassSprite).to(
+                    { isoZ: 4 },
+                    150,
+                    Phaser.Easing.Quadratic.InOut,
+                    true,
+                );
             }
             if (this.constructionSprite) {
-                this.game.add.tween(this.constructionSprite).to({ isoZ: 4 }, 150, Phaser.Easing.Quadratic.InOut, true);
+                this.game.add.tween(this.constructionSprite).to(
+                    { isoZ: 4 },
+                    150,
+                    Phaser.Easing.Quadratic.InOut,
+                    true,
+                );
             }
         } else {
             this.tint = 0xffffff;
             this.game.add.tween(this).to({ isoZ: 0 }, 150, Phaser.Easing.Quadratic.InOut, true);
             if (this.grassSprite) {
-                this.game.add.tween(this.grassSprite).to({ isoZ: 0 }, 150, Phaser.Easing.Quadratic.InOut, true);
+                this.game.add.tween(this.grassSprite).to(
+                    { isoZ: 0 },
+                    150,
+                    Phaser.Easing.Quadratic.InOut,
+                    true,
+                );
             }
             if (this.constructionSprite) {
-                this.game.add.tween(this.constructionSprite).to({ isoZ: 0 }, 150, Phaser.Easing.Quadratic.InOut, true);
+                this.game.add.tween(this.constructionSprite).to(
+                    { isoZ: 0 },
+                    150,
+                    Phaser.Easing.Quadratic.InOut,
+                    true,
+                );
             }
         }
         this.isDirty = false;
-        
+
         if (!this.constructionSprite) return;
         this.constructionSprite.updateContent();
     }
@@ -77,7 +97,7 @@ module.exports = class TileSprite extends Phaser.Plugin.Isometric.IsoSprite {
                 this.isoX,
                 this.isoY,
                 0,
-                `grass_${this.tile.grassType}`,
+                `GRASS_${this.tile.grassType}`,
                 0,
             );
             this.grassSprite.smoothed = true;
@@ -101,7 +121,7 @@ module.exports = class TileSprite extends Phaser.Plugin.Isometric.IsoSprite {
                 this.mapY,
                 this.tile,
             );
-          
+
             this.game.add.existing(this.constructionSprite);
         }
     }

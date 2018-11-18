@@ -1,10 +1,10 @@
 const Random = require('../helpers/Random');
 
-const Tile = require('./Tile');
+const TileModel = require('./TileModel');
 
 const TILE_TYPES = require('../constants/TileTypes');
 
-module.exports = class Game {
+module.exports = class GameModel {
     constructor(mapSize, seed = 0) {
         this.mapSize = mapSize;
         this.random = new Random(seed);
@@ -16,7 +16,7 @@ module.exports = class Game {
             this.map[x] = [];
             for (let y = 0; y < this.mapSize; y += 1) {
                 const randomNumber = this.random.nextInt(0, 20);
-                this.map[x][y] = new Tile();
+                this.map[x][y] = new TileModel();
                 if (randomNumber <= 0) {
                     this.map[x][y].setGrassType(TILE_TYPES.GRASS_1);
                 } else if (randomNumber <= 1) {
